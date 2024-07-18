@@ -20,7 +20,18 @@ class BookResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title'),
+                Forms\Components\TextInput::make('title')
+                    ->suffixActions([
+                        function(){
+                        return Forms\Components\Actions\Action::make('test')
+                            ->label('Test')
+                            ->icon('heroicon-o-check-circle')
+                            ->requiresConfirmation()
+                            ->form([
+                                Forms\Components\Textarea::make('testing')
+                            ]);
+                        }
+                    ]),
             ]);
     }
 
